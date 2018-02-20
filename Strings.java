@@ -89,3 +89,45 @@ public String countAndSayHelper(String str){
     ans+= Integer.toString(count) + previous;
     return ans; 
 }
+
+/* Valid Palindrome
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+For example,
+"A man, a plan, a canal: Panama" is a palindrome.
+"race a car" is not a palindrome.
+
+Note:
+Have you consider that the string might be empty? This is a good question to ask during an interview.
+
+For the purpose of this problem, we define empty string as valid palindrome.
+
+https://leetcode.com/problems/valid-palindrome/description/
+*/
+
+public boolean isPalindrome(String s) {
+    int left=0; 
+    int right = s.length()-1; 
+    while(left<right){
+        if (!isCharNum(s.charAt(left)))//left not char or num
+            left++;
+        else if (!isCharNum(s.charAt(right)))//right not char or num
+            right--;
+        else{//both are char or num
+            if( Character.toLowerCase(s.charAt(left))!=Character.toLowerCase(s.charAt(right)) )
+                return false; //if not equal
+            else{//if equal, move on
+                left++;
+                right--;
+            }
+        }
+    }
+    return true;
+}
+//helper function for checking char/num
+//can also use IsLetterOrDigit
+public boolean isCharNum(char c){
+    if ( (c >='a' && c<='z') || (c>='A' && c<='Z') || (c>='0' && c<='9'))
+        return true;
+    return false;
+}
